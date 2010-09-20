@@ -19,7 +19,7 @@ groups.each do |group|
         home home_dir
         shell user[:shell] || "/bin/bash"
         password user[:password]
-        supports :manage_home => false
+        supports :manage_home => user[:manage_home]
         action [:create, :manage]
       end
       
@@ -87,6 +87,7 @@ end
 # Remove initial setup user and group.
 user  "ubuntu" do
   action :remove
+  manage_home true
 end
 
 group "ubuntu" do
